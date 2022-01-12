@@ -21,16 +21,16 @@ class LovelyApplicationTests {
 //    void contextLoads() {
 //    }
 
-    @Autowired
-    private MockMvc mvc;
+//    @Autowired
+//    private MockMvc mvc;
 
-    @Test
-    public void hello가_리턴된다() throws Exception {
-        String hello = "hello1";
-
-        mvc.perform(get("/api/admin/list"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(hello));
-    }
+//    @Test
+//    public void hello가_리턴된다() throws Exception {
+//        String hello = "hello1";
+//
+//        mvc.perform(get("/api/admin/list"))
+//                .andExpect(status().isOk())
+//                .andExpect(content().string(hello));
+//    }
 
 }
