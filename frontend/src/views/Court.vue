@@ -2,6 +2,8 @@
   <div class="schedule">
     <h1>코트 조회</h1>
     <court-list :datas="datas"></court-list>
+
+    <button @click="goDetail">신규 매치</button>
   </div>
 </template>
 
