@@ -1,17 +1,16 @@
 spring:
+  profiles:
+    active: local
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/board?serverTimezone=UTC&characterEncoding=UTF-8
-    username: root
-    password: rladydckS1@#
+    url: jdbc:mariadb://springboot-webservice.cnndhf7x7pwl.ap-northeast-2.rds.amazonaws.com:3306/springboot_webservice
+    username: shkim
+    password: dndzidznD1
+    driver-class-name: org.mariadb.jdbc.Driver
 
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    open-in-view: false
-    show-sql: true
     hibernate:
-      format_sql: true
-      ddl-auto: update
+      ddl-auto: none
 
 logging:
   level:
