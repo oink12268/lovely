@@ -1,27 +1,27 @@
 package com.happy.lovely.presentation.api;
 
 
+import com.happy.lovely.application.UserService;
+import com.happy.lovely.presentation.dto.user.SignUpDto;
+import com.happy.lovely.utils.TokenUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.logging.Logger;
 
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/api/app/v1/users")
 @RequiredArgsConstructor
 @ResponseBody
 public class UserRestController {
 
-    final private static Logger LOG = Logger.getGlobal();
+    private final UserService userService;
 
-    @GetMapping("/list")
-    public String findUserList() {
+    @PostMapping("/signup")
+    public ResponseEntity<String> signUp(@RequestBody SignUpDto signUpDto) {
 
-        return "hello";
-    }
-
-    @GetMapping("/login")
-    public void login() {
-        LOG.info("GET successfully called on /login resource");
+        return userService.isEmailDuplicated(signUpDto.getEmail())
+                ? ResponseEntity.badRequest().build()
+                : ResponseEntity.ok(TokenUtils.generateJwtToken(userService.signUp(signUpDto)));
     }
 }

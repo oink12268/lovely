@@ -2,6 +2,7 @@
   <div class="home">
     <button @click="goCourt">코트</button>
     <button @click="goLogin">로그인</button>
+    <button @click="goSignup">회원가입</button>
   </div>
 </template>
 
@@ -14,7 +15,10 @@ export default {
       this.$router.push('/Court')
     },
     goLogin () {
-      console.log('goLogin')
+      this.$router.push('/Login')
+    },
+    goSignup () {
+      this.$router.push('/Signup')
     }
   }
 }

@@ -4,7 +4,7 @@
       로그인
     </h1>
 
-    <input type="text" placeholder="username" v-model="user">
+    <input type="text" placeholder="email" v-model="email">
     <input type="password" placeholder="password" v-model="password">
     <button @click="login">로그인</button>
   </div>
@@ -17,32 +17,28 @@ export default {
   name: 'login',
   data () {
     return {
-      user: '',
+      email: '',
       password: ''
     }
   },
   methods: {
     async login () {
-      try {
-        const result = await axios.get('/api/login', {
-          auth: {
-            username: this.user,
-            password: this.password
+      if (!this.email || !this.password) {
+        alert('Email or Password is Empty')
+        return false
+      } else {
+        axios.post('/api/user/login', { email: this.email, pw: this.password }
+        ).then(response => {
+          if (response.status === 200) {
+            // alert('Authorization: ' + response.headers['authorization'])
+            // localStorage.setItem('authorization', response.headers['authorization'])
+            this.$router.push('/')
           }
+        }).catch((exception) => {
+          alert('ERROR!!!! : ' + exception)
         })
-        if (result.status === 200) {
-          console.log('KSH::Login Success')
-          // this.loginSuccess = true
-        }
-      } catch (err) {
-        console.log('KSH::login Error', err)
-        // this.loginError = true
-        // throw new Error(err)
       }
     }
-    // login () {
-    //   console.log('KSH::Login try', this.user, this.password)
-    // }
   }
 }
 
