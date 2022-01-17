@@ -30,8 +30,9 @@ export default {
         axios.post('/api/user/login', { email: this.email, pw: this.password }
         ).then(response => {
           if (response.status === 200) {
+            console.log(response.headers.authorization)
             // alert('Authorization: ' + response.headers['authorization'])
-            // localStorage.setItem('authorization', response.headers['authorization'])
+            localStorage.setItem('authorization', response.headers.authorization)
             this.$router.push('/')
           }
         }).catch((exception) => {
