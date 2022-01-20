@@ -3,7 +3,6 @@
     <h1>
       로그인
     </h1>
-
     <input type="text" placeholder="email" v-model="email">
     <input type="password" placeholder="password" v-model="password">
     <button @click="login">로그인</button>
@@ -30,8 +29,10 @@ export default {
         axios.post('/api/user/login', { email: this.email, pw: this.password }
         ).then(response => {
           if (response.status === 200) {
-            console.log(response.headers.authorization)
-            localStorage.setItem('authorization', response.headers.authorization)
+            // localStorage.setItem('authorization', response.headers.authorization)
+            this.$store.commit('loginToken', response.headers.authorization)
+            console.log(this.$store.state.token)
+            console.log(this.$store.getters.isLogin)
             this.$router.push('/')
           }
         }).catch((exception) => {

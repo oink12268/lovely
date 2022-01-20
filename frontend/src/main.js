@@ -6,10 +6,10 @@ import axios from 'axios'
 
 axios.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('authorization')
-
+    // const token = localStorage.getItem('authorization')
+    const token = store.state.token
     if (token) {
-      config.headers.Authorization = token
+      // config.headers.Authorization = token
     }
 
     return config

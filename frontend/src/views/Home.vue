@@ -1,9 +1,9 @@
 <template>
   <div class="home">
     <button @click="goCourt">코트</button>
-    <button @click="goLogin">로그인</button>
-    <button @click="goSignup">회원가입</button>
-    <button @click="storetest">스토어 테스트</button>
+    <button v-if="!this.$store.getters.isLogin" @click="login">로그인</button>
+    <button v-if="!this.$store.getters.isLogin" @click="signUp">회원가입</button>
+    <button v-if="this.$store.getters.isLogin" @click="logOut">로그아웃</button>
   </div>
 </template>
 
@@ -11,20 +11,26 @@
 
 export default {
   name: 'Home',
+  data () {
+    return {
+    }
+  },
+  created () {
+  },
   methods: {
     goCourt () {
       this.$router.push('/Court')
     },
-    goLogin () {
+    login () {
       this.$router.push('/Login')
     },
-    goSignup () {
+    signUp () {
       this.$router.push('/Signup')
     },
-    storetest () {
-      console.log('storetest')
-      this.$store.commit('loginToken', 'hihello')
-      console.log(this.$store.state.token)
+    logOut () {
+      // localStorage.removeItem('token')
+      this.$store.commit('logoutToken')
+      this.$router.push('/')
     }
   }
 }
