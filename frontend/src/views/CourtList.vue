@@ -15,9 +15,9 @@
       </thead>
       <tbody>
         <tr v-for="(data, no) in datas" :key="no">
-          <td>{{no+1}}</td>
-          <td>{{data.name}}</td>
-          <td>{{data.phone}}</td>
+          <td>{{ no+1 }}</td>
+          <td @click="onSelectedItem(data)">{{ data.name }}</td>
+          <td>{{ data.phone }}</td>
         </tr>
       </tbody>
     </table>
@@ -46,9 +46,8 @@ export default {
   created () {
   },
   methods: {
-    getData () {
-    },
-    onSearch () {
+    onSelectedItem (data) {
+      this.$emit('selected-item', data.idx)
     }
   }
 }

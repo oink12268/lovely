@@ -23,18 +23,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
 
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests()
-//                .antMatchers("/", "/api/app/v1/schedules", "/api/app/v1/courts").permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//            .formLogin()
-//                .disable()
-//            .addFilterBefore(customAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-//
-//    }
-
     // 정적 자원에 대해서는 Security 설정을 적용하지 않음.
     @Override
     public void configure(WebSecurity web) {

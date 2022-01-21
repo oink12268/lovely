@@ -9,7 +9,7 @@ axios.interceptors.request.use(
     // const token = localStorage.getItem('authorization')
     const token = store.state.token
     if (token) {
-      // config.headers.Authorization = token
+      config.headers.Authorization = token
     }
 
     return config
